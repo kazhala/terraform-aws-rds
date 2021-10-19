@@ -109,7 +109,7 @@ resource "aws_db_instance" "this" {
   backup_retention_period = var.rds_backup_retention_period
 
   username = var.rds_username
-  password = var.rds_password
+  password = var.rds_password == null ? random_password.rds_master.result : var.rds_password
   name     = var.rds_db_name
   port     = var.rds_port
 
